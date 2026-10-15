@@ -68,8 +68,8 @@ aplicar_tema()
 # FUNÇÕES MODULARES DAS FERRAMENTAS
 # ==========================================
 # --- DASHBOARD DE CLIMA (LOGÍSTICA PREVENTIVA) ---
-# --- DASHBOARD DE CLIMA (LOGÍSTICA PREVENTIVA) ---
-@st.cache_data(ttl=3600) # Atualização de 1 hora
+
+@st.cache_data(ttl=3600)
 def buscar_dados_clima():
     # Coordenadas geográficas dos estados brasileiros
     ESTADOS_BR = {
@@ -255,7 +255,7 @@ def render_removedor_caracteres():
         if texto_bruto:
             texto_limpo = re.sub(r'\D', '', texto_bruto)
             if texto_limpo:
-                st.success(f"✅ Encontrados {len(texto_limpo)} dígitos.")
+                st.success(f"Encontrados {len(texto_limpo)} dígitos.")
                 st.code(texto_limpo, language="text")
             else:
                 st.warning("Nenhum número foi encontrado no texto.")
@@ -289,7 +289,7 @@ def render_simulador_impostos():
 # --- MÓDULO LOGISTICO ---
 def render_calculadora_pac_reverso():
     st.subheader("📦 Calculadora Estimativa de PAC Reverso")
-    st.info("💡 **Dica:** Quanto mais pesado, maior o custo.")
+    st.info("**Dica:** Quanto mais pesado, maior o custo.")
     st.markdown("Estime o custo do PAC Reverso entre os estados.")
 
     DESTINO_FIXO = {
