@@ -488,7 +488,7 @@ else:
         render_dashboard_inicio()
 
     elif menu_principal == "📦 Logística":
-        st.title("📦 Ferramentas de Logística")
+        st.title("Ferramentas de Logística")
         st.markdown("---")
         
         tool_logistica = st.selectbox(
@@ -500,7 +500,7 @@ else:
             render_calculadora_pac_reverso()
 
     elif menu_principal == "💰 Financeiro":
-        st.title("💰 Acordos e Financeiro")
+        st.title("Acordos e Financeiro")
         st.markdown("---")
         tool_fin = st.selectbox(
             "Selecione a ferramenta:", 
@@ -512,7 +512,7 @@ else:
             render_viabilidade_conserto()
 
     elif menu_principal == "📄 Fiscal":
-        st.title("📄 Ferramentas Fiscais")
+        st.title("Ferramentas Fiscais")
         st.markdown("---")
         tool_fiscal = st.selectbox(
             "Selecione a ferramenta:", 
