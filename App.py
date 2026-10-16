@@ -193,7 +193,7 @@ def buscar_dados_clima():
         return pd.DataFrame()
 
 def render_dashboard_inicio():
-    st.title("🏠 Início - Dashboard Operacional")
+    st.title("Início - Dashboard Operacional")
     st.markdown("Acompanhe zonas de risco meteorológico para antecipar atrasos logísticos.")
     st.markdown("---")
     
@@ -204,11 +204,11 @@ def render_dashboard_inicio():
         col1, col2 = st.columns([2, 1])
         
         with col1:
-            st.subheader("🗺️ Mapa Indicador de Risco Climatico")
+            st.subheader("Mapa Indicador de Risco Climatico")
             st.map(df_clima, latitude="latitude", longitude="longitude", size="tamanho", color="cor")
             
         with col2:
-            st.subheader("🚨 Ranking de Riscos Hoje")
+            st.subheader("Ranking de Riscos Hoje")
             # Ordena com base na gravidade do alerta antes do volume de chuva
             ordem_risco = {"ALTO": 4, "MÉDIO": 3, "BAIXO": 2, "MÍNIMO": 1}
             df_clima["Peso"] = df_clima["Nível de Risco"].map(ordem_risco)
@@ -221,10 +221,10 @@ def render_dashboard_inicio():
                 use_container_width=True
             )
             # Mensagem mais curta e acionável
-            st.info("💡 **Dica:** Estados em vermelho exigem acompanhamento imediato.")
+            st.info("**Dica:** Estados em vermelho exigem acompanhamento imediato.")
 
         st.markdown("---")
-        st.subheader("📊 Indicadores de Chuva por Estado")
+        st.subheader("Indicadores de Chuva por Estado")
         
         # Gráficos divididos lado a lado para não misturar escalas (mm vs %)
         dados_grafico = df_clima.sort_values(by="Precipitação (mm)", ascending=True).set_index("Estado")
@@ -243,7 +243,7 @@ def render_dashboard_inicio():
 
 # --- MÓDULO FISCAL ---
 def render_removedor_caracteres():
-    st.subheader("🧹 Removedor de Pontos e Traços")
+    st.subheader("Removedor de Pontos e Traços")
     st.markdown("Cole números formatados (CNPJ, CPF, Chave de NFe) para extrair apenas os dígitos.")
     
     texto_bruto = st.text_area(
@@ -263,7 +263,7 @@ def render_removedor_caracteres():
             st.warning("Por favor, insira algum texto.")
 
 def render_simulador_impostos():
-    st.subheader("🧮 Simulador de Impostos (IPI e ICMS)")
+    st.subheader("Simulador de Impostos (IPI e ICMS)")
     col1, col2, col3 = st.columns(3)
     with col1:
         base_calculo = st.number_input("Valor Base do Produto (R$)", min_value=0.0, step=10.0, format="%.2f", key="tax_base")
@@ -288,7 +288,7 @@ def render_simulador_impostos():
 
 # --- MÓDULO LOGISTICO ---
 def render_calculadora_pac_reverso():
-    st.subheader("📦 Calculadora Estimativa de PAC Reverso")
+    st.subheader("Calculadora Estimativa de PAC Reverso")
     st.info("**Dica:** Quanto mais pesado, maior o custo.")
     st.markdown("Estime o custo do PAC Reverso entre os estados.")
 
@@ -300,14 +300,14 @@ def render_calculadora_pac_reverso():
         "uf": "SP"
     }
 
-    with st.expander("🏢 Endereço de Destino (Central de Recebimento)", expanded=False):
+    with st.expander("Endereço de Destino (Central de Recebimento)", expanded=False):
         st.markdown(f"""
         **Logradouro:** {DESTINO_FIXO['endereco']}  
         **Bairro:** {DESTINO_FIXO['bairro']} | **CEP:** {DESTINO_FIXO['cep']}  
         **Cidade/UF:** {DESTINO_FIXO['municipio']} - {DESTINO_FIXO['uf']}
         """)
 
-    st.markdown("### 📥 Dados do Pacote e Origem")
+    st.markdown("### Dados do Pacote e Origem")
     col_dim1, col_dim2 = st.columns(2)
     with col_dim1:
         peso_fisico = st.number_input("Peso Físico Real (kg)", min_value=0.0, step=0.1, key="pac_peso")
@@ -334,7 +334,7 @@ def render_calculadora_pac_reverso():
             if comprimento > 100 or largura > 100 or altura > 100 or peso_fisico > 30 or soma_dimensoes > 200:
                 st.error("❌ **NÃO SEGUE POR CORREIOS!** O pacote ultrapassa os limites permitidos pelo PAC (Máx: 30kg, 1m por lado ou 2m na soma total). **Acione coleta por Transportadora.**")
                 return
-            st.info("💡 **Dica:** Após o resultado, arredonde mentalmente para mais 5 reais e para menos 5 reais.")
+            st.info("**Dica:** Após o resultado, arredonde mentalmente para mais 5 reais e para menos 5 reais.")
             peso_cubado = (comprimento * largura * altura) / 6000
             
             if peso_cubado <= 5.0 or peso_cubado <= 10.0:
@@ -380,7 +380,7 @@ def render_calculadora_pac_reverso():
 
             st.success("✅ **PAC Reverso Viável.** Dados de postagem gerados com sucesso:")
             
-            st.markdown("📋 **Dados de Destinatário**")
+            st.markdown("**Dados de Destinatário**")
             texto_etiqueta = (
                 f"DESTINATÁRIO:\n"
                 f"Endereço: {DESTINO_FIXO['endereco']}\n"
@@ -421,7 +421,7 @@ def render_calculadora_desconto():
                 st.success("✅ Desconto dentro do limite permitido.")
 
 def render_viabilidade_conserto():
-    st.subheader("🛠️ Avaliação: Devolver ou Consertar?")
+    st.subheader("Avaliação: Devolver ou Consertar?")
     col1, col2 = st.columns(2)
     with col1:
         valor_item = st.number_input("Valor Original do Item (R$)", min_value=0.0, step=50.0, format="%.2f", key="viab_valor_item")
